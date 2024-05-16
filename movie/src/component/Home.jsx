@@ -1,36 +1,34 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieList from "./MovieList";
+import { useState, useEffect } from "react";
 
-const Home = () => {
+function Home() {
+
     const [moviesData, setMoviesData] = useState([]);
 
-    useEffect(() => {
-        const fetchMovies = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/trending");
-                console.log("Response from /trending:", response.data);
-                if (Array.isArray(response.data)) {
-                    setMoviesData(response.data);
-                } else {
-                    console.error("Invalid data format:", response.data);
-                    // Optionally, handle the error or display a message to the user
-                }
-            } catch (error) {
-                console.error("Error fetching movies:", error);
-                // Optionally, handle the error or display a message to the user
-            }
-        };
+    const getAllMovies = () => {
+        const serverURL = `https://movie-library-2.onrender.com/trending`;
 
-        fetchMovies();
-    }, []);
+        axios.get(serverURL)
+            .then(response => {
+                setMoviesData(response.data);
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log("Error fetching movies:", error);
+            })
+    }
+
+
+    useEffect(() => {
+        getAllMovies();
+    }, [])
 
     return (
-        <>
-            <h1>Now Trending</h1>
-            <MovieList moviesData={moviesData} />;
-        </>
+
+        <MovieList moviesData={moviesData} isFavPage={true} />
+
     )
-};
+}
 
 export default Home;
