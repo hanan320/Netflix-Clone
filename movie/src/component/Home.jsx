@@ -8,7 +8,7 @@ const Home = () => {
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/trending");
+                const response = await axios.get("https://movie-library-2.onrender.com/trending");
                 console.log("Response from /trending:", response.data);
                 if (Array.isArray(response.data)) {
                     setMoviesData(response.data);
