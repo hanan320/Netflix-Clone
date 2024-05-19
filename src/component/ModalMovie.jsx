@@ -20,7 +20,7 @@ const ModalMovie = (props) => {
         };
 
         try {
-            const response = await axios.post("https://movie-library-2.onrender.com/addMovie", obj);
+            const response = await axios.post(`https://movie-library-2.onrender.com/addMovie`, obj);
             console.log(response);
             console.log('success');
 
