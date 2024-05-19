@@ -14,7 +14,7 @@ const MovieList = ({ moviesData, isFavPage }) => {
     useEffect(() => {
         const fetchFavoritMovies = async () => {
             try {
-                const response = await axios.get("https://movie-library-2.onrender.com/discover");
+                const response = await axios.get(`https://movie-library-2.onrender.com/discover`);
                 setFavoriteMovies(response.data);
 
             } catch (error) {
